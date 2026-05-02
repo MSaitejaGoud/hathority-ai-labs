@@ -1,0 +1,49 @@
+"""Views for the Team AI Showcase."""
+from django.db.models import Q
+from django.shortcuts import get_object_or_404, render
+
+from .models import Project
+
+
+DEFAULT_CATEGORY = "Boomi AI Agents"
+
+
+def project_list(request):
+    """
+    Homepage view.
+
+    Supports ?q= (search) and ?category= filtering — both applied together.
+    Defaults to category="Boomi AI Agents" when no category param is given.
+    Pass ?category=all to show every project.
+    """
+    query = request.GET.get("q", "").strip()
+    # Use DEFAULT_CATEGORY when ?category= is absent; "all" means no filter
+    category = request.GET.get("category", DEFAULT_CATEGORY).strip()
+
+    projects = Project.objects.all()
+
+    if category and category.lower() != "all":
+        projects = projects.filter(category=category)
+
+    if query:
+        projects = projects.filter(
+            Q(title__icontains=query)
+            | Q(short_description__icontains=query)
+            | Q(category__icontains=query)
+        )
+
+    projects = projects.order_by("-created_at")
+
+    context = {
+        "projects": projects,
+        "query": query,
+        "result_count": projects.count(),
+        "active_category": category,  # passed to template for nav highlighting
+    }
+    return render(request, "projects/home.html", context)
+
+
+def project_detail(request, pk):
+    """Detail page for a single project, looked up by primary key."""
+    project = get_object_or_404(Project, pk=pk)
+    return render(request, "projects/project_detail.html", {"project": project})

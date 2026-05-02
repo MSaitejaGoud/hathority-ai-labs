@@ -1,0 +1,39 @@
+{% extends "projects/base.html" %}
+
+{% block title %}{{ project.title }} · Team AI Showcase{% endblock %}
+
+{% block content %}
+<article class="container detail">
+  <a href="{% url 'projects:home' %}" class="back-link">← Back to all projects</a>
+
+  <header class="detail-header">
+    <div class="detail-meta">
+      <span class="tag">{{ project.category }}</span>
+      <span class="badge badge-{{ project.status|slugify }}">{{ project.status }}</span>
+    </div>
+    <h1 class="detail-title">{{ project.title }}</h1>
+    <p class="detail-lede">{{ project.short_description }}</p>
+  </header>
+
+  {% if project.image %}
+    <figure class="detail-figure">
+      <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+    </figure>
+  {% endif %}
+
+  <section class="detail-body">
+    <h2>About this project</h2>
+    {# Preserve line breaks from the admin textarea #}
+    <div class="prose">{{ project.full_description|linebreaks }}</div>
+  </section>
+
+  <aside class="detail-side">
+    <h3>Details</h3>
+    <dl class="meta-list">
+      <dt>Category</dt><dd>{{ project.category }}</dd>
+      <dt>Status</dt><dd>{{ project.status }}</dd>
+      <dt>Created</dt><dd>{{ project.created_at|date:"M j, Y" }}</dd>
+    </dl>
+  </aside>
+</article>
+{% endblock %}

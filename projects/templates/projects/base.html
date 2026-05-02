@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hathority AI Labs — explore AI agents, automations, and active agents built by our team." />
+  <title>{% block title %}Hathority AI Labs{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="https://hathority.com/"><img src="https://hathority.com/wp-content/themes/hath/assets/images/hathority-logo2024.svg" alt="hathority" style="height: 40px;"></a>
+      <nav class="site-nav">
+        <a href="{% url 'projects:home' %}">Projects</a>
+        <a href="/admin/" class="nav-admin">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-row-top">
+        <div class="footer-col footer-contact">
+          <h3>Find us</h3>
+          <p>Hathority, LLC 1 N 1st Street Suite 7640 Phoenix, AZ 85004</p>
+          <h3>Call us</h3>
+          <p>+1 (602)492-8566</p>
+          <h3>Mail us</h3>
+          <p>info@hathority.com</p>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-row-bottom">
+        <div class="footer-col footer-brand">
+          <div class="footer-logo-row">
+            <img src="https://hathority.com/wp-content/themes/hath/assets/images/hathority-logo2024-white.svg" alt="Hathority Logo" class="footer-logo-img">
+            <img src="https://hathority.com/img2025/Hathority_LLC_US_English_2025_Certification_Badge.png" alt="Great Place to Work" class="footer-badge-img">
+          </div>
+          <div class="footer-brand-text">
+            <!-- <strong>HATHORITY</strong><br> -->
+            <!-- <span>AI.<span class="dot">•</span>Data.<span class="dot">•</span>Cloud</span> -->
+          </div>
+          <p class="footer-desc">Hathority was founded by technology executives who are experienced as both providers and consumers of technology services. This perspective allows us to understand the challenges of our customers.</p>
+          <div class="footer-social">
+            <span>Follow us</span>
+            <a href="https://www.linkedin.com/company/hathority-llc---integration-experts" target="_blank" class="footer-social-link"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" class="footer-social-icon"></a>
+          </div>
+        </div>
+        <div class="footer-col footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="https://hathority.com/">Home</a></li>
+            <li><a href="https://hathority.com/casestudies">Case Studies</a></li>
+            <li><a href="https://hathority.com/company">Company</a></li>
+            <li><a href="https://hathority.com/insights">Insights</a></li>
+            <li><a href="https://hathority.com/partners">Partners</a></li>
+            <li><a href="https://hathority.com/contact">Contact</a></li>
+            <li><a href="https://hathority.com/our-customers-success-our-pride">Our Success &amp; Pride</a></li>
+            <li><a href="https://hathority.com/blog">Blog</a></li>
+            <li><a href="https://hathority.com/careers">Careers</a></li>
+            <li><a href="https://hathority.com/privacy-policy">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-help">
+          <h3>How can we help you?</h3>
+          <form class="footer-form">
+            <input type="text" placeholder="Enter Your Name" required>
+            <input type="text" placeholder="Enter Your Company Name">
+            <input type="email" placeholder="Enter Your Email" required>
+            <input type="tel" placeholder="Enter Your Phone Number">
+            <textarea placeholder="Enter Your Message" required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+</body>
+</html>

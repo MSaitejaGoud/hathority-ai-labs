@@ -1,0 +1,115 @@
+{% extends "projects/base.html" %}
+{% load static %}
+
+{% block title %}Projects · Team AI Showcase{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Hathority AI Labs</h1>
+    <p class="hero-subtitle">
+      A living showcase of intelligent systems built by the team —
+      from Boomi AI Agents to active autonomous workflows.
+    </p>
+
+    {# Search form — uses GET so the query is shareable via ?q= #}
+    <form class="search" method="get" action="{% url 'projects:home' %}" role="search">
+      {# Preserve active category when submitting search #}
+      {% if active_category %}
+        <input type="hidden" name="category" value="{{ active_category }}">
+      {% endif %}
+      <div class="search-field">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          name="q"
+          value="{{ query }}"
+          placeholder="Search by title, description, or category…"
+          autocomplete="off"
+        />
+        {% if query %}
+          <a href="{% url 'projects:home' %}?category={{ active_category }}" class="search-clear" aria-label="Clear search">×</a>
+        {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if query %}
+      <p class="search-meta">
+        {{ result_count }} result{{ result_count|pluralize }} for
+        <strong>"{{ query }}"</strong>
+      </p>
+    {% endif %}
+  </div>
+</section>
+
+{# ---- Category navigation ---- #}
+<nav class="category-nav" aria-label="Filter by category">
+  <div class="container">
+    <ul class="category-nav-list">
+      <li>
+        <a href="?category=all{% if query %}&amp;q={{ query }}{% endif %}"
+           class="category-btn{% if active_category == 'all' %} active{% endif %}">All</a>
+      </li>
+      <li>
+        <a href="?category=Boomi+AI+Agents{% if query %}&amp;q={{ query }}{% endif %}"
+           class="category-btn{% if active_category == 'Boomi AI Agents' %} active{% endif %}">Boomi AI Agents</a>
+      </li>
+      <li>
+        <a href="?category=Boomi+Agents{% if query %}&amp;q={{ query }}{% endif %}"
+           class="category-btn{% if active_category == 'Boomi Agents' %} active{% endif %}">Boomi Agents</a>
+      </li>
+      <li>
+        <a href="?category=Active+Agent{% if query %}&amp;q={{ query }}{% endif %}"
+           class="category-btn{% if active_category == 'Active Agent' %} active{% endif %}">Active Agents</a>
+      </li>
+      <li>
+        <a href="?category=Other{% if query %}&amp;q={{ query }}{% endif %}"
+           class="category-btn{% if active_category == 'Other' %} active{% endif %}">Other</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="container section">
+  {% if projects %}
+    <div class="card-grid">
+      {% for project in projects %}
+        <a class="card" href="{% url 'projects:detail' project.pk %}">
+          <div class="card-media">
+            {% if project.image %}
+              <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" />
+            {% else %}
+              <div class="card-media-placeholder" aria-hidden="true">
+                <span>{{ project.title|slice:":1" }}</span>
+              </div>
+            {% endif %}
+            <span class="badge badge-{{ project.status|slugify }}">{{ project.status }}</span>
+          </div>
+          <div class="card-body">
+            <span class="tag">{{ project.category }}</span>
+            <h3 class="card-title">{{ project.title }}</h3>
+            <p class="card-desc">{{ project.short_description }}</p>
+          </div>
+          <div class="card-footer">
+            <span class="card-link">View details →</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty">
+      <h2>No projects found</h2>
+      {% if query %}
+        <p>Try a different search term, or <a href="{% url 'projects:home' %}">view all projects</a>.</p>
+      {% else %}
+        <p>No projects in this category yet. <a href="?category=all">View all</a> or add one from the <a href="/admin/">Django Admin</a>.</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</section>
+{% endblock %}
