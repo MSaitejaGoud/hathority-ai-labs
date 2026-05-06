@@ -8,4 +8,5 @@ app_name = "projects"
 urlpatterns = [
     path("", views.project_list, name="home"),
     path("project/<int:pk>/", views.project_detail, name="detail"),
+    path("search/", views.project_search_json, name="search_json"),
 ]

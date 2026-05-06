@@ -43,6 +43,37 @@ def project_list(request):
     return render(request, "projects/home.html", context)
 
 
+def project_search_json(request):
+    """Returns filtered projects as JSON for live search."""
+    query = request.GET.get("q", "").strip()
+    category = request.GET.get("category", DEFAULT_CATEGORY).strip()
+
+    projects = Project.objects.all()
+    if category and category.lower() != "all":
+        projects = projects.filter(category=category)
+    if query:
+        projects = projects.filter(
+            Q(title__icontains=query)
+            | Q(short_description__icontains=query)
+            | Q(category__icontains=query)
+        )
+    projects = projects.order_by("-created_at")
+
+    data = [
+        {
+            "pk": p.pk,
+            "title": p.title,
+            "short_description": p.short_description,
+            "category": p.category,
+            "status": p.status,
+            "image_url": p.image.url if p.image else None,
+        }
+        for p in projects
+    ]
+    from django.http import JsonResponse
+    return JsonResponse({"projects": data, "result_count": len(data), "query": query})
+
+
 def project_detail(request, pk):
     """Detail page for a single project, looked up by primary key."""
     project = get_object_or_404(Project, pk=pk)
