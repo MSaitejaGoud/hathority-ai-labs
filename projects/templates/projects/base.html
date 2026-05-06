@@ -7,7 +7,8 @@
   <meta name="description" content="Hathority AI Labs — explore AI agents, automations, and active agents built by our team." />
   <title>{% block title %}Hathority AI Labs{% endblock %}</title>
 
-  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=3" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
@@ -27,60 +28,103 @@
     {% block content %}{% endblock %}
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-main">
-      <div class="footer-row-top">
-        <div class="footer-col footer-contact">
-          <h3>Find us</h3>
-          <p>Hathority, LLC 1 N 1st Street Suite 7640 Phoenix, AZ 85004</p>
-          <h3>Call us</h3>
-          <p>+1 (602)492-8566</p>
-          <h3>Mail us</h3>
-          <p>info@hathority.com</p>
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-cta pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fas fa-map-marker-alt"></i>
+              <div class="cta-text">
+                <h4>Find us</h4>
+                <span>Hathority, LLC<br>1 N 1st Street<br>Suite 7640<br>Phoenix, AZ 85004</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fa fa-phone"></i>
+              <div class="cta-text">
+                <h4>Call us</h4>
+                <span>+1 (602)492-8566</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 col-md-4 mb-30">
+            <div class="single-cta">
+              <i class="fa fa-envelope"></i>
+              <div class="cta-text">
+                <h4>Mail us</h4>
+                <span>info@hathority.com</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <hr class="footer-divider">
-      <div class="footer-row-bottom">
-        <div class="footer-col footer-brand">
-          <div class="footer-logo-row">
-            <img src="https://hathority.com/wp-content/themes/hath/assets/images/hathority-logo2024-white.svg" alt="Hathority Logo" class="footer-logo-img">
-            <img src="https://hathority.com/img2025/Hathority_LLC_US_English_2025_Certification_Badge.png" alt="Great Place to Work" class="footer-badge-img">
+      <div class="footer-content pt-5 pb-5">
+        <div class="row">
+          <div class="col-xl-4 col-lg-4 mb-50">
+            <div class="footer-widget">
+              <div class="footer-logo">
+                <a href="https://hathority.com/"><img src="https://hathority.com/wp-content/themes/hath/assets/images/hathority-logo2024-white.svg" alt="" style="width:80%;float:left;"></a>
+                <a href="https://www.greatplacetowork.com/certified-company/7088849" target="_blank"><img src="https://hathority.com/img2025/Hathority_LLC_US_English_2025_Certification_Badge.png" alt="" class="img-fluid" style="width:16%;float:left;margin-top:-25px;margin-left:4%;"></a>
+              </div>
+              <div class="footer-text">
+                <p>Hathority was founded by technology executives who are experienced as both providers and consumers of technology services. This perspective allows us to understand the challenges of our customers.</p>
+              </div>
+              <div class="footer-social-icon">
+                <span>Follow us</span>
+                <a href="https://www.linkedin.com/company/hathority-llc---integration-experts" target="_blank"><i class="fa fa-linkedin-square bg-gradient"></i></a>
+              </div>
+            </div>
           </div>
-          <div class="footer-brand-text">
-            <!-- <strong>HATHORITY</strong><br> -->
-            <!-- <span>AI.<span class="dot">•</span>Data.<span class="dot">•</span>Cloud</span> -->
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+            <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>Quick Links</h3>
+              </div>
+              <ul>
+                <li><a href="https://hathority.com/">Home</a></li>
+                <li><a href="https://hathority.com/casestudies">Case Studies</a></li>
+                <li><a href="https://hathority.com/company">Company</a></li>
+                <li><a href="https://hathority.com/our-customers-success-our-pride">Our Success &amp; Pride</a></li>
+                <li><a href="https://hathority.com/insights">Insights</a></li>
+                <li><a href="https://hathority.com/blog">Blog</a></li>
+                <li><a href="https://hathority.com/partners">Partners</a></li>
+                <li><a href="https://hathority.com/careers">Careers</a></li>
+                <li><a href="https://hathority.com/contact">Contact</a></li>
+                <li><a href="https://hathority.com/privacy-policy">Privacy Policy</a></li>
+              </ul>
+            </div>
           </div>
-          <p class="footer-desc">Hathority was founded by technology executives who are experienced as both providers and consumers of technology services. This perspective allows us to understand the challenges of our customers.</p>
-          <div class="footer-social">
-            <span>Follow us</span>
-            <a href="https://www.linkedin.com/company/hathority-llc---integration-experts" target="_blank" class="footer-social-link"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" class="footer-social-icon"></a>
+          <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+            <div class="footer-widget">
+              <div class="footer-widget-heading">
+                <h3>How can we help you?</h3>
+              </div>
+              <div class="subscribe-form">
+                <form class="footer-form">
+                  <input type="text" name="your-name" placeholder="Enter Your Name" required>
+                  <input type="text" name="CompanyName" placeholder="Enter Your Company Name" required>
+                  <input type="email" name="your-email" placeholder="Enter Your Email" required>
+                  <input type="tel" name="your-tel" placeholder="Enter Your Phone Number" required>
+                  <textarea name="your-message" placeholder="Enter Your Message"></textarea>
+                  <input type="submit" value="Submit">
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="footer-col footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="https://hathority.com/">Home</a></li>
-            <li><a href="https://hathority.com/casestudies">Case Studies</a></li>
-            <li><a href="https://hathority.com/company">Company</a></li>
-            <li><a href="https://hathority.com/insights">Insights</a></li>
-            <li><a href="https://hathority.com/partners">Partners</a></li>
-            <li><a href="https://hathority.com/contact">Contact</a></li>
-            <li><a href="https://hathority.com/our-customers-success-our-pride">Our Success &amp; Pride</a></li>
-            <li><a href="https://hathority.com/blog">Blog</a></li>
-            <li><a href="https://hathority.com/careers">Careers</a></li>
-            <li><a href="https://hathority.com/privacy-policy">Privacy Policy</a></li>
-          </ul>
-        </div>
-        <div class="footer-col footer-help">
-          <h3>How can we help you?</h3>
-          <form class="footer-form">
-            <input type="text" placeholder="Enter Your Name" required>
-            <input type="text" placeholder="Enter Your Company Name">
-            <input type="email" placeholder="Enter Your Email" required>
-            <input type="tel" placeholder="Enter Your Phone Number">
-            <textarea placeholder="Enter Your Message" required></textarea>
-            <button type="submit">Submit</button>
-          </form>
+      </div>
+    </div>
+    <div class="copyright-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 text-center">
+            <div class="copyright-text">
+              <p>Copyright &copy; 2025, All Right Reserved. Hathority LLC</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
