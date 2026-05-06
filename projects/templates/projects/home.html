@@ -37,12 +37,9 @@
       <button type="submit" class="btn btn-primary">Search</button>
     </form>
 
-    {% if query %}
-      <p class="search-meta">
-        {{ result_count }} result{{ result_count|pluralize }} for
-        <strong>"{{ query }}"</strong>
-      </p>
-    {% endif %}
+    <p class="search-meta" id="search-meta" {% if not query %}style="display:none"{% endif %}>
+      <span id="search-meta-text">{{ result_count }} result{{ result_count|pluralize }} for <strong>"{{ query }}"</strong></span>
+    </p>
   </div>
 </section>
 
@@ -74,9 +71,9 @@
   </div>
 </nav>
 
-<section class="container section">
+<section class="container section" id="results-section">
   {% if projects %}
-    <div class="card-grid">
+    <div class="card-grid" id="card-grid">
       {% for project in projects %}
         <a class="card" href="{% url 'projects:detail' project.pk %}">
           <div class="card-media">
@@ -101,7 +98,7 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="empty">
+    <div class="empty" id="empty-state">
       <h2>No projects found</h2>
       {% if query %}
         <p>Try a different search term, or <a href="{% url 'projects:home' %}">view all projects</a>.</p>
