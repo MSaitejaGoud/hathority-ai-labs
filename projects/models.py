@@ -10,9 +10,9 @@ from django.db import models
 class Project(models.Model):
     # ----- Choices -----
     CATEGORY_CHOICES = [
-        ("Boomi AI Agents", "Boomi AI Agents"),   # was "AI Agent" / "Automation"
-        ("Boomi Agents", "Boomi Agents"),
-        ("Active Agent", "Active Agent"),
+        ("Boomi AI Agents", "Boomi AI Agents"),
+        ("Hathority In-House Agents", "Hathority In-House Agents"),
+        ("Active Engagements", "Active Engagements"),
         ("Other", "Other"),
     ]
 
@@ -35,6 +35,7 @@ class Project(models.Model):
         choices=CATEGORY_CHOICES,
         default="Boomi AI Agents",
     )
+
     status = models.CharField(
         max_length=16,
         choices=STATUS_CHOICES,
