@@ -81,7 +81,7 @@
               <img src="{{ project.image.url }}" alt="{{ project.title }}" loading="lazy" />
             {% else %}
               <div class="card-media-placeholder" aria-hidden="true">
-                <span>{{ project.title|slice:":1" }}</span>
+                <span>{{ project.title }}</span>
               </div>
             {% endif %}
             <span class="badge badge-{{ project.status|slugify }}">{{ project.status }}</span>

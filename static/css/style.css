@@ -453,10 +453,13 @@ body {
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display);
-  font-size: 3rem;
-  color: var(--primary-2);
-  background: linear-gradient(135deg, #e0e7f0 0%, #c7d4e8 50%, #dce6f5 100%);
-  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  line-height: 1.4;
 }
 
 .card-body {
@@ -585,24 +588,28 @@ body {
 /* ---------- Detail page ---------- */
 .detail {
   padding: 2.5rem 1.25rem 4rem;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
-@media (min-width: 960px) {
-  .detail {
-    grid-template-columns: minmax(0, 1fr) 280px;
-    grid-template-areas:
-      "back   back"
-      "header header"
-      "figure side"
-      "body   side";
-  }
-  .back-link    { grid-area: back; }
-  .detail-header{ grid-area: header; }
-  .detail-figure{ grid-area: figure; }
-  .detail-body  { grid-area: body; }
-  .detail-side  { grid-area: side; }
+
+.detail-main {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.detail-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (max-width: 959px) {
+  .detail-main { flex-direction: column; }
+  .detail-side { width: 100%; }
 }
 
 .back-link {
@@ -644,12 +651,58 @@ body {
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
+  background: #000;
 }
 .detail-figure img { width: 100%; height: auto; display: block; }
+
+/* 16:9 responsive video embed */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  background: #000;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
 
 .detail-body h2 {
   font-family: var(--font-display);
   margin-top: 0;
+}
+
+.detail-features h2 {
+  font-family: var(--font-display);
+  margin-top: 0;
+}
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+.features-list li {
+  padding: .9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  font-size: .97rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.features-list li strong {
+  color: var(--primary-2);
 }
 .prose {
   color: var(--text);
@@ -659,11 +712,15 @@ body {
 .prose p { margin: 0 0 1em; }
 
 .detail-side {
+  width: 340px;
+  flex-shrink: 0;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem 1.4rem;
   height: fit-content;
+  position: sticky;
+  top: 5rem;
 }
 .detail-side h3 {
   margin: 0 0 .8rem;
