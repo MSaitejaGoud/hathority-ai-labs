@@ -7,22 +7,24 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    # Columns shown in the changelist
-    list_display = ("title", "category", "status", "created_at", "thumbnail")
-    list_filter = ("category", "status")
-    search_fields = ("title", "short_description", "category")
+    list_display = ("title", "category", "status", "built_by", "created_at", "thumbnail")
+    list_filter = ("category", "status", "solution_type")
+    search_fields = ("title", "short_description", "category", "built_by")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
 
     fieldsets = (
         ("Basic Info", {
-            "fields": ("title", "short_description", "full_description"),
+            "fields": ("title", "short_description", "full_description", "key_features"),
         }),
         ("Classification", {
-            "fields": ("category", "status"),
+            "fields": ("category", "status", "solution_type"),
+        }),
+        ("Credits & Dates", {
+            "fields": ("built_by", "published_on"),
         }),
         ("Media", {
-            "fields": ("image",),
+            "fields": ("image", "video_url"),
         }),
         ("Metadata", {
             "fields": ("created_at",),
@@ -30,7 +32,6 @@ class ProjectAdmin(admin.ModelAdmin):
     )
 
     def thumbnail(self, obj):
-        """Render a small image preview in the admin changelist."""
         if obj.image:
             return format_html(
                 '<img src="{}" style="height:36px;border-radius:4px;" />',

@@ -77,4 +77,15 @@ def project_search_json(request):
 def project_detail(request, pk):
     """Detail page for a single project, looked up by primary key."""
     project = get_object_or_404(Project, pk=pk)
-    return render(request, "projects/project_detail.html", {"project": project})
+    features = []
+    if project.key_features:
+        for line in project.key_features.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if ':' in line:
+                title, _, desc = line.partition(':')
+                features.append({"title": title.strip(), "desc": desc.strip()})
+            else:
+                features.append({"title": "", "desc": line})
+    return render(request, "projects/project_detail.html", {"project": project, "features": features})

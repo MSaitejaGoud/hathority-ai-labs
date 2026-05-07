@@ -4,6 +4,7 @@
 
 {% block content %}
 <article class="container detail">
+
   <a href="{% url 'projects:home' %}" class="back-link">← Back to all projects</a>
 
   <header class="detail-header">
@@ -15,25 +16,65 @@
     <p class="detail-lede">{{ project.short_description }}</p>
   </header>
 
-  {% if project.image %}
-    <figure class="detail-figure">
-      <img src="{{ project.image.url }}" alt="{{ project.title }}" />
-    </figure>
-  {% endif %}
+  <div class="detail-main">
 
-  <section class="detail-body">
-    <h2>About this project</h2>
-    {# Preserve line breaks from the admin textarea #}
-    <div class="prose">{{ project.full_description|linebreaks }}</div>
-  </section>
+    <div class="detail-content">
+      {% if project.video_url %}
+        <figure class="detail-figure">
+          <div class="video-wrapper">
+            <iframe
+              src="{{ project.get_embed_url }}"
+              allowfullscreen
+              allow="autoplay; fullscreen"
+              frameborder="0"
+              title="{{ project.title }} demo video"
+            ></iframe>
+          </div>
+        </figure>
+      {% elif project.image %}
+        <figure class="detail-figure">
+          <img src="{{ project.image.url }}" alt="{{ project.title }}" />
+        </figure>
+      {% endif %}
 
-  <aside class="detail-side">
-    <h3>Details</h3>
-    <dl class="meta-list">
-      <dt>Category</dt><dd>{{ project.category }}</dd>
-      <dt>Status</dt><dd>{{ project.status }}</dd>
-      <dt>Created</dt><dd>{{ project.created_at|date:"M j, Y" }}</dd>
-    </dl>
-  </aside>
+      <section class="detail-body">
+        <h2>About this project</h2>
+        <div class="prose">{{ project.full_description|linebreaks }}</div>
+      </section>
+
+      {% if features %}
+        <section class="detail-features">
+          <h2>Features</h2>
+          <ul class="features-list">
+            {% for f in features %}
+              <li>
+                {% if f.title %}<strong>{{ f.title }} : </strong>{% endif %}{{ f.desc }}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+    </div>
+
+    <aside class="detail-side">
+      <h3>Details</h3>
+      <dl class="meta-list">
+        <dt>Category</dt><dd>{{ project.category }}</dd>
+        <dt>Status</dt><dd>{{ project.status }}</dd>
+{% if project.built_by %}
+          <dt>Built By</dt><dd>{{ project.built_by }}</dd>
+        {% endif %}
+        {% if project.solution_type %}
+          <dt>Solution Type</dt><dd>{{ project.solution_type }}</dd>
+        {% endif %}
+        {% if project.published_on %}
+          <dt>Published On</dt><dd>{{ project.published_on|date:"M j, Y" }}</dd>
+        {% endif %}
+
+      </dl>
+    </aside>
+
+  </div>
+
 </article>
 {% endblock %}
