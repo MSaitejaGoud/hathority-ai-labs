@@ -716,6 +716,33 @@ body {
 .meta-list dt { color: var(--text-muted); }
 .meta-list dd { margin: 0; color: var(--text); font-weight: 500; }
 
+/* ---------- Public link section ---------- */
+.detail-public-link {
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(14,165,183,.08), rgba(59,130,246,.08));
+  border: 1px solid rgba(14,165,183,.25);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--primary);
+}
+.detail-public-link p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+.external-link {
+  color: var(--primary-2);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(14,165,183,.3);
+  text-underline-offset: 3px;
+  transition: color .2s, text-decoration-color .2s;
+}
+.external-link:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

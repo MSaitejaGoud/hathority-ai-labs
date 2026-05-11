@@ -65,7 +65,6 @@ def project_search_json(request):
             "title": p.title,
             "short_description": p.short_description,
             "category": p.category,
-            "status": p.status,
             "image_url": p.image.url if p.image else None,
         }
         for p in projects

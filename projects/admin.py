@@ -26,7 +26,7 @@ class ProjectAdmin(admin.ModelAdmin):
             "fields": ("built_by", "published_on"),
         }),
         ("Media", {
-            "fields": ("image", "video_url"),
+            "fields": ("image", "video_url", "public_url"),
         }),
         ("Metadata", {
             "fields": ("created_at",),

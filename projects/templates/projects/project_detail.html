@@ -53,6 +53,12 @@
           </ul>
         </section>
       {% endif %}
+
+      {% if project.public_url %}
+        <section class="detail-public-link">
+          <p>To learn more about this agent, visit the <a href="{{ project.public_url }}" target="_blank" rel="noopener noreferrer" class="external-link">Boomi Marketplace</a>.</p>
+        </section>
+      {% endif %}
     </div>
 
     <aside class="detail-side">
