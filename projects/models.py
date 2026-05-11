@@ -105,6 +105,11 @@ class Project(models.Model):
         null=True,
         help_text="Paste a Google Drive or OneDrive share link here",
     )
+    public_url = models.URLField(
+        blank=True,
+        null=True,
+        help_text="Official public link for this agent (e.g. Boomi listing page)",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
