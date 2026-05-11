@@ -7,8 +7,8 @@ from .models import Project
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "status", "built_by", "created_at", "thumbnail")
-    list_filter = ("category", "status", "solution_type")
+    list_display = ("title", "category", "built_by", "created_at", "thumbnail")
+    list_filter = ("category", "solution_type")
     search_fields = ("title", "short_description", "category", "built_by")
     readonly_fields = ("created_at",)
     ordering = ("-created_at",)
@@ -18,7 +18,9 @@ class ProjectAdmin(admin.ModelAdmin):
             "fields": ("title", "short_description", "full_description", "key_features"),
         }),
         ("Classification", {
-            "fields": ("category", "status", "solution_type"),
+
+            "fields": ("category", "solution_type"),
+
         }),
         ("Credits & Dates", {
             "fields": ("built_by", "published_on"),

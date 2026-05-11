@@ -84,12 +84,14 @@
                 <span>{{ project.title }}</span>
               </div>
             {% endif %}
-            <span class="badge badge-{{ project.status|slugify }}">{{ project.status }}</span>
           </div>
           <div class="card-body">
             <span class="tag">{{ project.category }}</span>
             <h3 class="card-title">{{ project.title }}</h3>
             <p class="card-desc">{{ project.short_description }}</p>
+            {% if project.published_on %}
+              <p class="card-date">Published on Boomi on {{ project.published_on|date:"M j, Y" }}</p>
+            {% endif %}
           </div>
           <div class="card-footer">
             <span class="card-link">View details →</span>
@@ -103,7 +105,7 @@
       {% if query %}
         <p>Try a different search term, or <a href="{% url 'projects:home' %}">view all projects</a>.</p>
       {% else %}
-        <p>No projects in this category yet. <a href="?category=all">View all</a> or add one from the <a href="/admin/">Django Admin</a>.</p>
+        <!-- <p>No projects in this category yet. <a href="?category=all">View all</a> or add one from the <a href="/admin/">Django Admin</a>.</p> -->
       {% endif %}
     </div>
   {% endif %}
