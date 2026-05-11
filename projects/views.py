@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import Project
 
 
-DEFAULT_CATEGORY = "Boomi AI Agents"
+DEFAULT_CATEGORY = "all"
 
 
 def project_list(request):

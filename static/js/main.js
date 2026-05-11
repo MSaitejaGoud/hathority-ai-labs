@@ -30,7 +30,7 @@
       projects.forEach(function (p) {
         var media = p.image_url
           ? '<img src="' + p.image_url + '" alt="' + p.title + '" loading="lazy" />'
-          : '<div class="card-media-placeholder" aria-hidden="true"><span>' + p.title.charAt(0) + '</span></div>';
+          : '<div class="card-media-placeholder" aria-hidden="true"><span>' + p.title + '</span></div>';
         var slug = p.category.toLowerCase().replace(/\s+/g, "-");
         html += '<a class="card" href="/project/' + p.pk + '/">';
         html += '<div class="card-media">' + media + '</div>';
@@ -42,10 +42,20 @@
       resultsSection.innerHTML = html;
     }
 
+    searchInput.addEventListener("focus", function () {
+      document.querySelectorAll(".category-btn").forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+      document.querySelector(".category-btn[href*='category=all']").classList.add("active");
+      fetch("/search/?q=&category=all")
+        .then(function (r) { return r.json(); })
+        .then(function (data) { renderCards(data.projects, ""); });
+    });
+
     searchInput.addEventListener("input", function () {
       clearTimeout(searchTimer);
       var q = searchInput.value.trim();
-      var cat = activeCategory ? activeCategory.value : "Boomi AI Agents";
+      var cat = "all";
       searchTimer = setTimeout(function () {
         fetch("/search/?q=" + encodeURIComponent(q) + "&category=" + encodeURIComponent(cat))
           .then(function (r) { return r.json(); })
