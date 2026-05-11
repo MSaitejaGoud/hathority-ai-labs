@@ -10,7 +10,6 @@
   <header class="detail-header">
     <div class="detail-meta">
       <span class="tag">{{ project.category }}</span>
-      <span class="badge badge-{{ project.status|slugify }}">{{ project.status }}</span>
     </div>
     <h1 class="detail-title">{{ project.title }}</h1>
     <p class="detail-lede">{{ project.short_description }}</p>
@@ -60,7 +59,6 @@
       <h3>Details</h3>
       <dl class="meta-list">
         <dt>Category</dt><dd>{{ project.category }}</dd>
-        <dt>Status</dt><dd>{{ project.status }}</dd>
 {% if project.built_by %}
           <dt>Built By</dt><dd>{{ project.built_by }}</dd>
         {% endif %}
@@ -68,7 +66,7 @@
           <dt>Solution Type</dt><dd>{{ project.solution_type }}</dd>
         {% endif %}
         {% if project.published_on %}
-          <dt>Published On</dt><dd>{{ project.published_on|date:"M j, Y" }}</dd>
+          <dt>Published On</dt><dd>Boomi · {{ project.published_on|date:"M j, Y" }}</dd>
         {% endif %}
 
       </dl>

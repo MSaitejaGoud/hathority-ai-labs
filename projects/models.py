@@ -18,13 +18,6 @@ class Project(models.Model):
         ("Other", "Other"),
     ]
 
-    STATUS_CHOICES = [
-        ("Completed", "Completed"),
-        ("In Progress", "In Progress"),
-        ("Live", "Live"),
-        ("Planned", "Planned"),
-    ]
-
     SOLUTION_TYPE_CHOICES = [
         ("Accelerator", "Accelerator"),
         ("Agents", "Agents"),
@@ -47,11 +40,6 @@ class Project(models.Model):
         max_length=32,
         choices=CATEGORY_CHOICES,
         default="Boomi AI Agents",
-    )
-    status = models.CharField(
-        max_length=16,
-        choices=STATUS_CHOICES,
-        default="Planned",
     )
     built_by = models.CharField(
         max_length=100,
