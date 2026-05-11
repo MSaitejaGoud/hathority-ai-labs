@@ -29,6 +29,17 @@ class Project(models.Model):
         ("Task Automation", "Task Automation"),
     ]
 
+    SOLUTION_TYPE_CHOICES = [
+        ("Accelerator", "Accelerator"),
+        ("Agents", "Agents"),
+        ("AI Agent Accelerator", "AI Agent Accelerator"),
+        ("AI Agent Recipe", "AI Agent Recipe"),
+        ("Designer Agent Accelerator", "Designer Agent Accelerator"),
+        ("Designer Agent Recipe", "Designer Agent Recipe"),
+        ("Recipe", "Recipe"),
+        ("Task Automation", "Task Automation"),
+    ]
+
     # ----- Fields -----
     title = models.CharField(max_length=100)
     short_description = models.CharField(
@@ -40,6 +51,27 @@ class Project(models.Model):
         max_length=32,
         choices=CATEGORY_CHOICES,
         default="Boomi AI Agents",
+    )
+    built_by = models.CharField(
+        max_length=100,
+        default="HATHORITY | Partner",
+        help_text="Name of the person or team who built this agent",
+    )
+    solution_type = models.CharField(
+        max_length=30,
+        choices=SOLUTION_TYPE_CHOICES,
+        blank=True,
+        null=True,
+    )
+    published_on = models.DateField(
+        blank=True,
+        null=True,
+        help_text="Date this agent was published",
+    )
+    key_features = models.TextField(
+        blank=True,
+        null=True,
+        help_text="One feature per line in format 'Title : Description'. Each line becomes a bullet point.",
     )
     built_by = models.CharField(
         max_length=100,

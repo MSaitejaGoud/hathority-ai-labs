@@ -18,7 +18,9 @@ class ProjectAdmin(admin.ModelAdmin):
             "fields": ("title", "short_description", "full_description", "key_features"),
         }),
         ("Classification", {
+
             "fields": ("category", "solution_type"),
+
         }),
         ("Credits & Dates", {
             "fields": ("built_by", "published_on"),
